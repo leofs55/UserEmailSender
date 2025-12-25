@@ -14,16 +14,16 @@ public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID UserId;
+    private UUID userId;
     private String name;
     private String email;
 
     public UUID getUserId() {
-        return UserId;
+        return userId;
     }
 
     public void setUserId(UUID userId) {
-        UserId = userId;
+        this.userId = userId;
     }
 
     public String getName() {
@@ -41,5 +41,4 @@ public class UserEntity {
     public void setEmail(String email) {
         this.email = email;
     }
-
 }
