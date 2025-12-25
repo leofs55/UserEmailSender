@@ -1,6 +1,6 @@
 package dev.lest.mail.entity;
 
-import dev.lest.mail.enums.EmailStatus;
+import dev.lest.mail.enums.MailStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -24,7 +24,7 @@ public class MailEntity {
     @Column(columnDefinition = "BODY")
     private String body;
     private LocalDateTime sendDateEmail;
-    private EmailStatus statusEmail;
+    private MailStatus statusEmail;
 
     public UUID getEmailId() {
         return emailId;
@@ -82,11 +82,11 @@ public class MailEntity {
         this.sendDateEmail = sendDateEmail;
     }
 
-    public EmailStatus getStatusEmail() {
+    public MailStatus getStatusEmail() {
         return statusEmail;
     }
 
-    public void setStatusEmail(EmailStatus statusEmail) {
+    public void setStatusEmail(MailStatus statusEmail) {
         this.statusEmail = statusEmail;
     }
 }

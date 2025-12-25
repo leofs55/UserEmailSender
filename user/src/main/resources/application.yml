@@ -5,8 +5,8 @@ spring:
 
   datasource:
     url: jdbc:postgresql://localhost:5435/ms-user-ms
-    username: postgres
-    password: postgres
+    username: postgres-user
+    password: postgres-password
     driver-class-name: org.postgresql.Driver
 
   jpa:
@@ -22,5 +22,5 @@ spring:
     locations: classpath:db/migration
     baseline-on-migrate: true
 
-  server:
-    port: 8081
+server:
+  port: 8081
