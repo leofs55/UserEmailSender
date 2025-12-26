@@ -1,5 +1,13 @@
 package dev.lest.user.presentation;
 
+import dev.lest.user.dto.request.CreateUserRequest;
+import dev.lest.user.dto.request.DeleteUserRequest;
+import dev.lest.user.dto.request.UpdateUserRequest;
+import dev.lest.user.dto.request.UserRequest;
+import dev.lest.user.dto.response.CreateUserResponse;
+import dev.lest.user.dto.response.DeleteUserResponse;
+import dev.lest.user.dto.response.UpdateUserResponse;
+import dev.lest.user.dto.response.UserResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,19 +17,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class UserControllerAPI {
 
-    Object createUserEndPoint(Object createUserRequest) {
-        return new Object();
+    CreateUserResponse createUserEndPoint(CreateUserRequest createUserRequest) {
+        return new CreateUserResponse();
     }
 
-    Object findUserEndPoint(Object userRequest) {
-        return new Object();
+    UserResponse findUserEndPoint(UserRequest userRequest) {
+        return new UserResponse();
     }
 
-    Object deleteUserEndPoint(Object deleteUserRequest){
-        return new Object();
+    DeleteUserResponse deleteUserEndPoint(DeleteUserRequest deleteUserRequest){
+        return new DeleteUserResponse();
     }
 
-    Object updateUserEndPoint(Object updateUserRequest) {
-        return new Object();
+    UpdateUserResponse updateUserEndPoint(UpdateUserRequest updateUserRequest) {
+        return new UpdateUserResponse();
     }
 }
