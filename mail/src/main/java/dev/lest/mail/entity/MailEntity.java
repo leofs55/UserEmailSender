@@ -26,66 +26,54 @@ public class MailEntity {
     private LocalDateTime sendDateEmail;
     private MailStatus statusEmail;
 
+    //Getter's
     public UUID getEmailId() {
         return emailId;
     }
-
-    public void setEmailId(UUID emailId) {
-        this.emailId = emailId;
-    }
-
     public UUID getUserId() {
         return userId;
     }
-
-    public void setUserId(UUID userId) {
-        this.userId = userId;
-    }
-
     public String getEmailFrom() {
         return emailFrom;
     }
-
-    public void setEmailFrom(String emailFrom) {
-        this.emailFrom = emailFrom;
-    }
-
     public String getEmailTo() {
         return emailTo;
     }
-
-    public void setEmailTo(String emailTo) {
-        this.emailTo = emailTo;
-    }
-
     public String getEmailSubject() {
         return emailSubject;
     }
-
-    public void setEmailSubject(String emailSubject) {
-        this.emailSubject = emailSubject;
-    }
-
     public String getBody() {
         return body;
     }
-
-    public void setBody(String body) {
-        this.body = body;
-    }
-
     public LocalDateTime getSendDateEmail() {
         return sendDateEmail;
     }
-
-    public void setSendDateEmail(LocalDateTime sendDateEmail) {
-        this.sendDateEmail = sendDateEmail;
-    }
-
     public MailStatus getStatusEmail() {
         return statusEmail;
     }
 
+    //Setter's
+    public void setEmailId(UUID emailId) {
+        this.emailId = emailId;
+    }
+    public void setUserId(UUID userId) {
+        this.userId = userId;
+    }
+    public void setEmailFrom(String emailFrom) {
+        this.emailFrom = emailFrom;
+    }
+    public void setEmailTo(String emailTo) {
+        this.emailTo = emailTo;
+    }
+    public void setEmailSubject(String emailSubject) {
+        this.emailSubject = emailSubject;
+    }
+    public void setBody(String body) {
+        this.body = body;
+    }
+    public void setSendDateEmail(LocalDateTime sendDateEmail) {
+        this.sendDateEmail = sendDateEmail;
+    }
     public void setStatusEmail(MailStatus statusEmail) {
         this.statusEmail = statusEmail;
     }

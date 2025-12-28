@@ -18,26 +18,24 @@ public class UserEntity {
     private String name;
     private String email;
 
+    //Getter's
     public UUID getUserId() {
         return userId;
     }
-
-    public void setUserId(UUID userId) {
-        this.userId = userId;
-    }
-
     public String getName() {
         return name;
     }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getEmail() {
         return email;
     }
 
+    //Setter's
+    public void setUserId(UUID userId) {
+        this.userId = userId;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
     public void setEmail(String email) {
         this.email = email;
     }
