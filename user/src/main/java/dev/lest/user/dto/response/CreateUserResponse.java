@@ -1,4 +1,8 @@
 package dev.lest.user.dto.response;
 
-public record CreateUserResponse() {
+import java.util.UUID;
+
+public record CreateUserResponse(UUID userId,
+                                 String name,
+                                 String email) {
 }

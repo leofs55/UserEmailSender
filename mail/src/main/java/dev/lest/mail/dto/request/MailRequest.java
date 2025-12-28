@@ -1,4 +1,7 @@
 package dev.lest.mail.dto.request;
 
-public record MailRequest() {
+import java.util.UUID;
+
+public record MailRequest(UUID emailId,
+                          UUID userId) {
 }

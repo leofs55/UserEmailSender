@@ -1,4 +1,7 @@
 package dev.lest.user.dto.response;
 
-public record DeleteUserResponse() {
+import java.util.UUID;
+
+public record DeleteUserResponse(UUID userId,
+                                 String email) {
 }

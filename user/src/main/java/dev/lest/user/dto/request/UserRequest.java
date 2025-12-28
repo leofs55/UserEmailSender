@@ -1,4 +1,8 @@
 package dev.lest.user.dto.request;
 
-public record UserRequest() {
+import java.util.UUID;
+
+public record UserRequest(UUID userId,
+                          String name,
+                          String email) {
 }
