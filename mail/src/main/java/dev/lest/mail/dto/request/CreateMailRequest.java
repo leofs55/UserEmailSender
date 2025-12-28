@@ -1,6 +1,6 @@
 package dev.lest.mail.dto.request;
 
-import dev.lest.mail.enums.MailStatus;
+import dev.lest.mail.util.enums.MailStatus;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

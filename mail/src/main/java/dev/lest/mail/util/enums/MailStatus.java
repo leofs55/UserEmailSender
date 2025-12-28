@@ -1,4 +1,4 @@
-package dev.lest.mail.enums;
+package dev.lest.mail.util.enums;
 
 public enum MailStatus {
     PENDING,

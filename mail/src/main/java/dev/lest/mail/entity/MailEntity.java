@@ -1,8 +1,9 @@
 package dev.lest.mail.entity;
 
-import dev.lest.mail.enums.MailStatus;
+import dev.lest.mail.util.enums.MailStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
@@ -12,6 +13,7 @@ import java.util.UUID;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Table(name = "TB_MAIL")
 public class MailEntity {
     @Id
