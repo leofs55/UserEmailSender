@@ -1,4 +1,15 @@
 package dev.lest.user.util.mapper;
 
-public class DeleteUserMapper {
+import dev.lest.user.dto.request.DeleteUserRequest;
+import dev.lest.user.dto.response.DeleteUserResponse;
+import dev.lest.user.entity.UserEntity;
+import org.mapstruct.Mapper;
+import org.mapstruct.MappingConstants;
+
+@Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
+public interface DeleteUserMapper {
+
+    UserEntity map(DeleteUserRequest deleteUserRequest);
+    DeleteUserResponse map(UserEntity userEntity);
+
 }

@@ -1,5 +1,6 @@
 package dev.lest.mail.service;
 
+import dev.lest.mail.entity.MailEntity;
 import dev.lest.mail.repository.MailRepository;
 import lombok.RequiredArgsConstructor;
 
@@ -12,19 +13,19 @@ public class MailService {
         this.repository = repository;
     }
 
-    Object create(Object mail){
-        return new Object();
+    MailEntity create(MailEntity mail){
+        return repository.save(mail);
     }
 
-    Object find(Object mail){
-        return new Object();
+    MailEntity find(MailEntity mail){
+        return repository.findById(mail.getEmailId()).get();
     }
 
-    Object update(Object mail){
-        return new Object();
+    MailEntity update(MailEntity mail){
+        return repository.save(mail);
     }
 
-    Object delete(Object mail){
-        return new Object();
+    MailEntity delete(MailEntity mail){
+        return new MailEntity();
     }
 }
