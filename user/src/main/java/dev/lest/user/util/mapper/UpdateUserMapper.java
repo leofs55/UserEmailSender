@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
-public interface UpdadeUserMapper {
+public interface UpdateUserMapper {
 
     UserEntity map(UpdateUserRequest updateUserRequest);
     UpdateUserResponse map(UserEntity userEntity);

@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
-public interface UpdadeMailMapper {
+public interface UpdateMailMapper {
 
     MailEntity map(UpdateMailRequest updateMailRequest);
     UpdateMailRespose map(MailEntity mailEntity);
