@@ -14,6 +14,7 @@ import dev.lest.user.util.mapper.CreateUserMapper;
 import dev.lest.user.util.mapper.DeleteUserMapper;
 import dev.lest.user.util.mapper.UpdateUserMapper;
 import dev.lest.user.util.mapper.UserMapper;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +23,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @RestController
-@RequestMapping("api/v1/user/")
+@RequestMapping("/api/v1/user/")
 @RequiredArgsConstructor
 public class UserControllerAPI {
 
@@ -34,6 +35,14 @@ public class UserControllerAPI {
 
     //Instancia de service:
     private UserService service;
+
+    public UserControllerAPI(CreateUserMapper createMapper, UserMapper mapper, UpdateUserMapper updateMapper, DeleteUserMapper deleteMapper, UserService service) {
+        this.createMapper = createMapper;
+        this.mapper = mapper;
+        this.updateMapper = updateMapper;
+        this.deleteMapper = deleteMapper;
+        this.service = service;
+    }
 
     @PostMapping("create/")
     ResponseEntity<Map<CreateUserResponse, String>> createUserEndPoint(@RequestBody CreateUserRequest createUserRequest) {

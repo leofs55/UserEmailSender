@@ -4,10 +4,12 @@ package dev.lest.user.service;
 import dev.lest.user.entity.UserEntity;
 import dev.lest.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.UUID;
 
 @RequiredArgsConstructor
+@Service
 public class UserService {
 
     private UserRepository repository;

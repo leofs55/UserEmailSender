@@ -6,7 +6,7 @@ import dev.lest.user.entity.UserEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 
-@Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
+@Mapper(componentModel = "spring")
 public interface UserMapper {
     UserEntity map(UserRequest userRequest);
     UserResponse map(UserEntity userEntity);
