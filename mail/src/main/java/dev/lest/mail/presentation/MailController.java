@@ -27,13 +27,13 @@ import java.util.Map;
 public class MailController {
 
     //Instancia dos Mapper`s:
-    private CreateMailMapper createMapper;
-    private UpdateMailMapper updateMapper;
-    private MailMapper mapper;
-    private DeleteMailMapper deleteMapper;
+    private final CreateMailMapper createMapper;
+    private final UpdateMailMapper updateMapper;
+    private final MailMapper mapper;
+    private final DeleteMailMapper deleteMapper;
 
     //Instancia de service:
-    private MailService service;
+    private final MailService service;
 
     @PostMapping("create/")
     public ResponseEntity<Map<CreateMailRespose, String>> createMailEndPoint(@RequestBody CreateMailRequest createMailRequest) {

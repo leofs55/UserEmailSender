@@ -4,12 +4,14 @@ import dev.lest.user.dto.request.CreateUserRequest;
 import dev.lest.user.dto.response.CreateUserResponse;
 import dev.lest.user.entity.UserEntity;
 import org.mapstruct.Mapper;
-import org.mapstruct.MappingConstants;
+import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = "spring")
 public interface CreateUserMapper {
 
-    UserEntity map(CreateUserRequest createUserRequest);
-    CreateUserResponse map(UserEntity userEntity);
+    CreateUserMapper instance = Mappers.getMapper(CreateUserMapper.class);
+
+    UserEntity createUserRequestToUserEntity(CreateUserRequest createUserRequest);
+    CreateUserResponse userEntityToCreateUserResponse(UserEntity userEntity);
 
 }

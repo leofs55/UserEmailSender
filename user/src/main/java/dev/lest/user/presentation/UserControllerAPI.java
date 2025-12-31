@@ -14,7 +14,6 @@ import dev.lest.user.util.mapper.CreateUserMapper;
 import dev.lest.user.util.mapper.DeleteUserMapper;
 import dev.lest.user.util.mapper.UpdateUserMapper;
 import dev.lest.user.util.mapper.UserMapper;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,27 +27,21 @@ import java.util.Map;
 public class UserControllerAPI {
 
     //Instancia dos Mapper`s:
-    private CreateUserMapper createMapper;
-    private UserMapper mapper;
-    private UpdateUserMapper updateMapper;
-    private DeleteUserMapper deleteMapper;
+    private final CreateUserMapper createMapper;
+    private final UserMapper mapper;
+    private final UpdateUserMapper updateMapper;
+    private final DeleteUserMapper deleteMapper;
 
     //Instancia de service:
-    private UserService service;
+    private final UserService service;
 
-    public UserControllerAPI(CreateUserMapper createMapper, UserMapper mapper, UpdateUserMapper updateMapper, DeleteUserMapper deleteMapper, UserService service) {
-        this.createMapper = createMapper;
-        this.mapper = mapper;
-        this.updateMapper = updateMapper;
-        this.deleteMapper = deleteMapper;
-        this.service = service;
-    }
+
 
     @PostMapping("create/")
     ResponseEntity<Map<CreateUserResponse, String>> createUserEndPoint(@RequestBody CreateUserRequest createUserRequest) {
 
-        UserEntity entity = createMapper.map(createUserRequest);
-        CreateUserResponse response = createMapper.map(service.create(entity));
+        UserEntity entity = createMapper.createUserRequestToUserEntity(createUserRequest);
+        CreateUserResponse response = createMapper.userEntityToCreateUserResponse(service.create(entity));
         Map<CreateUserResponse, String> resultMap = Map.of(
                 response,
                 "The user was created successfully."
@@ -61,8 +54,8 @@ public class UserControllerAPI {
     @GetMapping("find/")
     ResponseEntity<Map<UserResponse, String>> findUserEndPoint(@RequestBody UserRequest userRequest) {
 
-        UserEntity entity = mapper.map(userRequest);
-        UserResponse response = mapper.map(service.find(entity));
+        UserEntity entity = mapper.userRequestToUserEntity(userRequest);
+        UserResponse response = mapper.userEntityToUserResponse(service.find(entity));
         Map<UserResponse, String> resultMap = Map.of(
                 response,
                 "The user was successfully found."
@@ -75,8 +68,8 @@ public class UserControllerAPI {
     @PatchMapping("update/")
     ResponseEntity<Map<UpdateUserResponse, String>> updateUserEndPoint(@RequestBody UpdateUserRequest updateUserRequest) {
 
-        UserEntity entity = updateMapper.map(updateUserRequest);
-        UpdateUserResponse response = updateMapper.map(service.update(entity));
+        UserEntity entity = updateMapper.updateUserRequestToUserEntity(updateUserRequest);
+        UpdateUserResponse response = updateMapper.userEntityToUpdateUserResponse(service.update(entity));
         Map<UpdateUserResponse, String> resultMap = Map.of(
                 response,
                 "The user has been successfully changed."
@@ -89,8 +82,8 @@ public class UserControllerAPI {
     @DeleteMapping("delete/")
     ResponseEntity<Map<DeleteUserResponse, String>> deleteUserEndPoint(@RequestBody DeleteUserRequest deleteUserRequest){
 
-        UserEntity entity = deleteMapper.map(deleteUserRequest);
-        DeleteUserResponse response = deleteMapper.map(service.delete(entity));
+        UserEntity entity = deleteMapper.deleteUserRequestToUserEntity(deleteUserRequest);
+        DeleteUserResponse response = deleteMapper.userEntityToDeleteUserResponse(service.delete(entity));
         Map<DeleteUserResponse, String> resultMap = Map.of(
                 response,
                 "The user was successfully deleted."

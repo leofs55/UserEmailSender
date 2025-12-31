@@ -12,11 +12,7 @@ import java.util.UUID;
 @Service
 public class UserService {
 
-    private UserRepository repository;
-
-    UserService(UserRepository repository) {
-        this.repository = repository;
-    }
+    private final UserRepository repository;
 
     public UserEntity create(UserEntity user) {
         return repository.save(user);
