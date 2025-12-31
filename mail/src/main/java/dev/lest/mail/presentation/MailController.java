@@ -20,6 +20,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("api/v1/mail/")
@@ -36,13 +37,13 @@ public class MailController {
     private final MailService service;
 
     @PostMapping("create/")
-    public ResponseEntity<Map<CreateMailRespose, String>> createMailEndPoint(@RequestBody CreateMailRequest createMailRequest) {
+    public ResponseEntity<Map<String, Object>> createMailEndPoint(@RequestBody CreateMailRequest createMailRequest) {
 
-        MailEntity entity = createMapper.map(createMailRequest);
-        CreateMailRespose respose = createMapper.map(service.create(entity));
-        Map<CreateMailRespose, String> resultMap = Map.of(
-                respose,
-                "The email was created successfully."
+        MailEntity entity = createMapper.createMailRequestToMailEntity(createMailRequest);
+        CreateMailRespose response = createMapper.mailEntityToCreateMailRespose(service.create(entity));
+        Map<String, Object> resultMap = Map.of(
+                "mail: ", response,
+                "result: ","The email was created successfully."
         );
         return ResponseEntity
                 .status(HttpStatus.OK)
@@ -50,13 +51,13 @@ public class MailController {
     }
 
     @GetMapping("find/")
-    public ResponseEntity<Map<MailRespose, String>> findMailEndPoint(@RequestBody MailRequest mailRequest) {
+    public ResponseEntity<Map<String, Object>> findMailEndPoint(@RequestBody MailRequest mailRequest) {
 
-        MailEntity entity = mapper.map(mailRequest);
-        MailRespose respose = mapper.map(service.find(entity));
-        Map<MailRespose, String> resultMap = Map.of(
-                respose,
-                "The email was successfully found."
+        MailEntity entity = mapper.mailRequestToMailEntity(mailRequest);
+        MailRespose response = mapper.mailEntityToMailRespose(service.find(entity));
+        Map<String, Object> resultMap = Map.of(
+                "mail: ", response,
+                "result: ","The email was successfully found."
         );
         return ResponseEntity
                 .status(HttpStatus.OK)
@@ -64,13 +65,13 @@ public class MailController {
     }
 
     @PatchMapping("update/")
-    public ResponseEntity<Map<UpdateMailRespose, String>> updateMailEndPoint(@RequestBody UpdateMailRequest updateMailRequest) {
+    public ResponseEntity<Map<String, Object>> updateMailEndPoint(@RequestBody UpdateMailRequest updateMailRequest) {
 
-        MailEntity entity = updateMapper.map(updateMailRequest);
-        UpdateMailRespose response = updateMapper.map(service.update(entity));
-        Map<UpdateMailRespose, String> resultMap = Map.of(
-                response,
-                "The email was successfully changed."
+        MailEntity entity = updateMapper.updateMailRequestToMailEntity(updateMailRequest);
+        UpdateMailRespose response = updateMapper.mailEntityToUpdateMailRespose(service.update(entity));
+        Map<String, Object> resultMap = Map.of(
+                "mail: ", response,
+                "result: ","The email was successfully changed."
         );
         return ResponseEntity
                 .status(HttpStatus.OK)
@@ -78,13 +79,13 @@ public class MailController {
     }
 
     @DeleteMapping("delete/")
-    public ResponseEntity<Map<DeleteMailRespose, String>> deleteMailEndPoint(@RequestBody DeleteMailRequest deleteMailRequest) {
+    public ResponseEntity<Map<String, Object>> deleteMailEndPoint(@RequestBody DeleteMailRequest deleteMailRequest) {
 
-        MailEntity entity = deleteMapper.map(deleteMailRequest);
-        DeleteMailRespose respose = deleteMapper.map(service.delete(entity));
-        Map<DeleteMailRespose, String> resultMap = Map.of(
-                respose,
-                "The email was successfully deleted."
+        MailEntity entity = deleteMapper.deleteMailRequestToMailEntity(deleteMailRequest);
+        DeleteMailRespose respose = deleteMapper.mailEntityToDeleteMailRespose(service.delete(entity));
+        Map<String, Object> resultMap = Map.of(
+                "mail: ", respose,
+                "result: ","The email was successfully deleted."
         );
         return ResponseEntity
                 .status(HttpStatus.OK)

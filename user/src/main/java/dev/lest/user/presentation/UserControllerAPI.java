@@ -38,13 +38,13 @@ public class UserControllerAPI {
 
 
     @PostMapping("create/")
-    ResponseEntity<Map<CreateUserResponse, String>> createUserEndPoint(@RequestBody CreateUserRequest createUserRequest) {
+    ResponseEntity<Map<String, Object>> createUserEndPoint(@RequestBody CreateUserRequest createUserRequest) {
 
         UserEntity entity = createMapper.createUserRequestToUserEntity(createUserRequest);
         CreateUserResponse response = createMapper.userEntityToCreateUserResponse(service.create(entity));
-        Map<CreateUserResponse, String> resultMap = Map.of(
-                response,
-                "The user was created successfully."
+        Map<String, Object> resultMap = Map.of(
+                "User: ", response,
+                "result: ", "The user was created successfully."
         );
         return ResponseEntity
                 .status(HttpStatus.OK)
@@ -52,13 +52,13 @@ public class UserControllerAPI {
     }
 
     @GetMapping("find/")
-    ResponseEntity<Map<UserResponse, String>> findUserEndPoint(@RequestBody UserRequest userRequest) {
+    ResponseEntity<Map<String, Object>> findUserEndPoint(@RequestBody UserRequest userRequest) {
 
         UserEntity entity = mapper.userRequestToUserEntity(userRequest);
         UserResponse response = mapper.userEntityToUserResponse(service.find(entity));
-        Map<UserResponse, String> resultMap = Map.of(
-                response,
-                "The user was successfully found."
+        Map<String, Object> resultMap = Map.of(
+                "User: ", response,
+                "result: ","The user was successfully found."
         );
         return ResponseEntity
                 .status(HttpStatus.OK)
@@ -66,13 +66,13 @@ public class UserControllerAPI {
     }
 
     @PatchMapping("update/")
-    ResponseEntity<Map<UpdateUserResponse, String>> updateUserEndPoint(@RequestBody UpdateUserRequest updateUserRequest) {
+    ResponseEntity<Map<String, Object>> updateUserEndPoint(@RequestBody UpdateUserRequest updateUserRequest) {
 
         UserEntity entity = updateMapper.updateUserRequestToUserEntity(updateUserRequest);
         UpdateUserResponse response = updateMapper.userEntityToUpdateUserResponse(service.update(entity));
-        Map<UpdateUserResponse, String> resultMap = Map.of(
-                response,
-                "The user has been successfully changed."
+        Map<String, Object> resultMap = Map.of(
+                "User: ", response,
+                "result: ","The user has been successfully changed."
         );
         return ResponseEntity
                 .status(HttpStatus.OK)
@@ -80,13 +80,13 @@ public class UserControllerAPI {
     }
 
     @DeleteMapping("delete/")
-    ResponseEntity<Map<DeleteUserResponse, String>> deleteUserEndPoint(@RequestBody DeleteUserRequest deleteUserRequest){
+    ResponseEntity<Map<String, Object>> deleteUserEndPoint(@RequestBody DeleteUserRequest deleteUserRequest){
 
         UserEntity entity = deleteMapper.deleteUserRequestToUserEntity(deleteUserRequest);
         DeleteUserResponse response = deleteMapper.userEntityToDeleteUserResponse(service.delete(entity));
-        Map<DeleteUserResponse, String> resultMap = Map.of(
-                response,
-                "The user was successfully deleted."
+        Map<String, Object> resultMap = Map.of(
+                "User: ", response,
+                "result: ","The user was successfully deleted."
         );
         return ResponseEntity
                 .status(HttpStatus.OK)

@@ -4,12 +4,11 @@ import dev.lest.mail.dto.request.UpdateMailRequest;
 import dev.lest.mail.dto.response.UpdateMailRespose;
 import dev.lest.mail.entity.MailEntity;
 import org.mapstruct.Mapper;
-import org.mapstruct.MappingConstants;
 
-@Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
+@Mapper(componentModel = "spring")
 public interface UpdateMailMapper {
 
-    MailEntity map(UpdateMailRequest updateMailRequest);
-    UpdateMailRespose map(MailEntity mailEntity);
+    MailEntity updateMailRequestToMailEntity(UpdateMailRequest updateMailRequest);
+    UpdateMailRespose mailEntityToUpdateMailRespose(MailEntity mailEntity);
 
 }
