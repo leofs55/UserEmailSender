@@ -1,0 +1,1 @@
+CREATE CAST (varchar AS status_email) WITH INOUT AS IMPLICIT;

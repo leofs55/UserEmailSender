@@ -11,5 +11,5 @@ public record CreateMailRequest(UUID userId,
                                 String emailSubject,
                                 String body,
                                 LocalDateTime sendDateEmail,
-                                MailStatus statusEmail) {
+                                MailStatus emailStatus) {
 }

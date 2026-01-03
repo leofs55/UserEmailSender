@@ -4,16 +4,18 @@ import dev.lest.mail.entity.MailEntity;
 import dev.lest.mail.repository.MailRepository;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
-@AllArgsConstructor
 @Service
+@Slf4j
 public class MailService {
 
-    private MailRepository repository;
+    private final MailRepository repository;
 
     public MailEntity create(MailEntity mail){
+        log.info(mail.toString());
         return repository.save(mail);
     }
 

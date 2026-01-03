@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -14,6 +15,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@ToString
 @Table(name = "TB_MAIL")
 public class MailEntity {
     @Id
@@ -26,7 +28,9 @@ public class MailEntity {
     @Column(columnDefinition = "BODY")
     private String body;
     private LocalDateTime sendDateEmail;
-    private MailStatus statusEmail;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "email_status", columnDefinition = "status_email")
+    private MailStatus emailStatus;
 
     //Getter's
     public UUID getEmailId() {
@@ -51,7 +55,7 @@ public class MailEntity {
         return sendDateEmail;
     }
     public MailStatus getStatusEmail() {
-        return statusEmail;
+        return emailStatus;
     }
 
     //Setter's
@@ -77,6 +81,6 @@ public class MailEntity {
         this.sendDateEmail = sendDateEmail;
     }
     public void setStatusEmail(MailStatus statusEmail) {
-        this.statusEmail = statusEmail;
+        this.emailStatus = statusEmail;
     }
 }

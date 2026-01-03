@@ -1,12 +1,12 @@
-
+CREATE TYPE status_email AS ENUM ('PENDING', 'FAILED', 'SENT', 'DELIVERED');
 
 CREATE TABLE TB_MAIL(
     email_id UUID PRIMARY KEY,
-    user_id UUID,
+    user_id UUID NOT NULL,
     email_from VARCHAR(255) NOT NULL,
     email_to VARCHAR(255) NOT NULL,
     email_subject VARCHAR(255) NOT NULL,
-    body TEXT,
-    send_date_email ,
-    email_status
+    body TEXT NOT NULL,
+    send_date_email TIMESTAMP NOT NULL,
+    email_status status_email NOT NULL
 );
