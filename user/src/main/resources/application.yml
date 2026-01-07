@@ -4,15 +4,15 @@ spring:
     name: user
 
   datasource:
-    url: jdbc:postgresql://localhost:5435/ms-user-ms
-    username: postgres-user
-    password: postgres-password
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
 
   jpa:
     hibernate:
-    ddl-auto: update
-    show-sql: true
+      ddl-auto: ${JPA_DDL_AUTO}
+    show-sql: ${SHOW_SQL}
     properties:
       hibernate:
       dialect: org.hibernate.dialect.PostgreSQLDialect
@@ -23,4 +23,4 @@ spring:
     baseline-on-migrate: true
 
 server:
-  port: 8081
+  port: ${SERVER_PORT}

@@ -4,15 +4,15 @@ spring:
     name: mail
 
   datasource:
-    url: jdbc:postgresql://localhost:5433/ms_email_ms
-    username: postgres
-    password: postgres
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
 
   jpa:
     hibernate:
-    ddl-auto: update
-    show-sql: true
+    ddl-auto: ${JPA_DDL_AUTO}
+    show-sql: ${SHOW_SQL}
     properties:
       hibernate:
       dialect: org.hibernate.dialect.PostgreSQLDialect
@@ -22,5 +22,11 @@ spring:
     locations: classpath:db/migration
     baseline-on-migrate: true
 
+  rabbitmq:
+    addresses: ${RABBITMQ_ADDRESSES}
+    username: ${RABBITMQ_USERNAME}
+    password: ${RABBITMQ_PASSWORD}
+    virtual-host: ${RABBITMQ_VHOST}
+
 server:
-  port: 8080
+  port: ${SERVER_PORT}
