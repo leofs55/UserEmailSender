@@ -19,25 +19,25 @@ public class configRabbitMq {
         return new Queue(queueName, true);
     }
 
-    @Bean
-    public Jackson2JsonMessageConverter jsonMessageConverter() {
-        return new Jackson2JsonMessageConverter();
-    }
-
-    @Bean
-    public SimpleRabbitListenerContainerFactory rabbitListenerContainerFactory(
-            ConnectionFactory connectionFactory,
-            Jackson2JsonMessageConverter jsonMessageConverter) {
-
-        SimpleRabbitListenerContainerFactory factory = new SimpleRabbitListenerContainerFactory();
-        factory.setConnectionFactory(connectionFactory);
-        factory.setMessageConverter(jsonMessageConverter);
-
-        // Use DefaultAmqpHeaderMapper which is generally more stable than SimpleAmqpHeaderMapper
-        DefaultA headerMapper = DefaultAmqpHeaderMapper.inboundMapper();
-        // You can also tell it to ignore certain headers if they continue to cause issues
-        // headerMapper.setInboundHeaderNames("!priority", "*");
-
-        return factory;
-    }
+//    @Bean
+//    public Jackson2JsonMessageConverter jsonMessageConverter() {
+//        return new Jackson2JsonMessageConverter();
+//    }
+//
+//    @Bean
+//    public SimpleRabbitListenerContainerFactory rabbitListenerContainerFactory(
+//            ConnectionFactory connectionFactory,
+//            Jackson2JsonMessageConverter jsonMessageConverter) {
+//
+//        SimpleRabbitListenerContainerFactory factory = new SimpleRabbitListenerContainerFactory();
+//        factory.setConnectionFactory(connectionFactory);
+//        factory.setMessageConverter(jsonMessageConverter);
+//
+//        // Use DefaultAmqpHeaderMapper which is generally more stable than SimpleAmqpHeaderMapper
+//        DefaultAmqpHeaderMapper headerMapper = DefaultAmqpHeaderMapper.inboundMapper();
+//        // You can also tell it to ignore certain headers if they continue to cause issues
+//        // headerMapper.setInboundHeaderNames("!priority", "*");
+//
+//        return factory;
+//    }
 }
