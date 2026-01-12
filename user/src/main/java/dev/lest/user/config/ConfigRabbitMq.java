@@ -1,5 +1,4 @@
-package dev.lest.mail.config;
-
+package dev.lest.user.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.amqp.core.Queue;
@@ -8,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class configRabbitMq {
+public class ConfigRabbitMq {
 
     private final String queueName = "mail-queue";
 

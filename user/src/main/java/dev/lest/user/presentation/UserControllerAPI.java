@@ -9,6 +9,7 @@ import dev.lest.user.dto.response.DeleteUserResponse;
 import dev.lest.user.dto.response.UpdateUserResponse;
 import dev.lest.user.dto.response.UserResponse;
 import dev.lest.user.entity.UserEntity;
+import dev.lest.user.producer.UserProducer;
 import dev.lest.user.service.UserService;
 import dev.lest.user.util.mapper.CreateUserMapper;
 import dev.lest.user.util.mapper.DeleteUserMapper;
@@ -34,11 +35,12 @@ public class UserControllerAPI {
 
     //Instancia de service:
     private final UserService service;
+    private final UserProducer producer;
 
 
 
     @PostMapping("create/")
-    ResponseEntity<Map<String, Object>> createUserEndPoint(@RequestBody CreateUserRequest createUserRequest) {
+    public ResponseEntity<Map<String, Object>> createUserEndPoint(@RequestBody CreateUserRequest createUserRequest) {
 
         UserEntity entity = createMapper.createUserRequestToUserEntity(createUserRequest);
         CreateUserResponse response = createMapper.userEntityToCreateUserResponse(service.create(entity));
@@ -52,7 +54,7 @@ public class UserControllerAPI {
     }
 
     @GetMapping("find/")
-    ResponseEntity<Map<String, Object>> findUserEndPoint(@RequestBody UserRequest userRequest) {
+    public ResponseEntity<Map<String, Object>> findUserEndPoint(@RequestBody UserRequest userRequest) {
 
         UserEntity entity = mapper.userRequestToUserEntity(userRequest);
         UserResponse response = mapper.userEntityToUserResponse(service.find(entity));
@@ -66,7 +68,7 @@ public class UserControllerAPI {
     }
 
     @PatchMapping("update/")
-    ResponseEntity<Map<String, Object>> updateUserEndPoint(@RequestBody UpdateUserRequest updateUserRequest) {
+    public ResponseEntity<Map<String, Object>> updateUserEndPoint(@RequestBody UpdateUserRequest updateUserRequest) {
 
         UserEntity entity = updateMapper.updateUserRequestToUserEntity(updateUserRequest);
         UpdateUserResponse response = updateMapper.userEntityToUpdateUserResponse(service.update(entity));
@@ -80,7 +82,7 @@ public class UserControllerAPI {
     }
 
     @DeleteMapping("delete/")
-    ResponseEntity<Map<String, Object>> deleteUserEndPoint(@RequestBody DeleteUserRequest deleteUserRequest){
+    public ResponseEntity<Map<String, Object>> deleteUserEndPoint(@RequestBody DeleteUserRequest deleteUserRequest){
 
         UserEntity entity = deleteMapper.deleteUserRequestToUserEntity(deleteUserRequest);
         DeleteUserResponse response = deleteMapper.userEntityToDeleteUserResponse(service.delete(entity));
@@ -91,5 +93,10 @@ public class UserControllerAPI {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(resultMap);
+    }
+
+    @GetMapping("send/{message}")
+    public String sendMessage(@PathVariable String message){
+        return producer.send(message);
     }
 }

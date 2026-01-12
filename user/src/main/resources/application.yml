@@ -22,5 +22,11 @@ spring:
     locations: classpath:db/migration
     baseline-on-migrate: true
 
+  rabbitmq:
+    addresses: ${RABBITMQ_ADDRESSES}
+    username: ${RABBITMQ_USERNAME}
+    password: ${RABBITMQ_PASSWORD}
+    virtual-host: ${RABBITMQ_VHOST}
+
 server:
   port: ${SERVER_PORT}
