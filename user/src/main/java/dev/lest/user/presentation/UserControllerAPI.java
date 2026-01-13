@@ -94,9 +94,4 @@ public class UserControllerAPI {
                 .status(HttpStatus.OK)
                 .body(resultMap);
     }
-
-    @GetMapping("send/{message}")
-    public String sendMessage(@PathVariable String message){
-        return producer.send(message);
-    }
 }

@@ -14,6 +14,8 @@ import java.util.UUID;
 @Table(name = "TB_USERS")
 public class UserEntity {
 
+    private static final long serialVersionUID = 1l;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID userId;

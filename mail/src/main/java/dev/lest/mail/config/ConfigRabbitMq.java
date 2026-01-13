@@ -6,6 +6,7 @@ import dev.lest.mail.dto.request.CreateMailRequest;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.support.converter.DefaultClassMapper;
 import org.springframework.amqp.support.converter.JacksonJsonMessageConverter;
+import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -22,10 +23,15 @@ public class ConfigRabbitMq {
         return new Queue(queueName, true);
     }
 
+//    @Bean
+//    public JacksonJsonMessageConverter messageConverter() {
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        return new JacksonJsonMessageConverter(String.valueOf(objectMapper));
+//    }
+
     @Bean
-    public JacksonJsonMessageConverter messageConverter() {
-        ObjectMapper objectMapper = new ObjectMapper();
-        return new JacksonJsonMessageConverter(String.valueOf(objectMapper));
+    public MessageConverter messageConverter() {
+        return new JacksonJsonMessageConverter();
     }
 
     @Bean
@@ -39,7 +45,7 @@ public class ConfigRabbitMq {
     public DefaultClassMapper classMapper() {
         DefaultClassMapper classMapper = new DefaultClassMapper();
         Map<String, Class<?>> idClassMapping = new HashMap<>();
-        idClassMapping.put("createMailRequest",CreateMailRequest.class);
+        idClassMapping.put("createMailRequest", CreateMailRequest.class);
         classMapper.setIdClassMapping(idClassMapping);
         return classMapper;
     }

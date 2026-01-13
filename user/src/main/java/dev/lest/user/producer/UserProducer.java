@@ -1,5 +1,6 @@
 package dev.lest.user.producer;
 
+import dev.lest.user.entity.UserEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.Queue;
@@ -14,9 +15,14 @@ public class UserProducer {
 
     private final Queue queue;
 
-    public String send(String value) {
-        template.convertAndSend("",queue.getName(), value);
+    public String sendString(String value) {
+        template.convertAndSend(queue.getName(), value);
         return " [x] Sent '" + value + "'";
+    }
+
+    public String sendUser(UserEntity user) {
+        template.convertAndSend(queue.getName(), user);
+        return " [x] Sent '" + user + "'";
     }
 
 }
