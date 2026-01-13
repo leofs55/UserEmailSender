@@ -19,8 +19,9 @@ public class UserService {
 
     @Transactional
     public UserEntity create(UserEntity user) {
+        UserEntity userEntity = repository.save(user);
         producer.sendUser(user);
-        return repository.save(user);
+        return userEntity;
     }
 
     public UserEntity find(UserEntity user) {

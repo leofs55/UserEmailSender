@@ -3,6 +3,7 @@ package dev.lest.mail.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.lest.mail.dto.request.CreateMailRequest;
+import dev.lest.mail.util.classes.UserEntity;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.support.converter.DefaultClassMapper;
 import org.springframework.amqp.support.converter.JacksonJsonMessageConverter;
@@ -44,8 +45,9 @@ public class ConfigRabbitMq {
     @Bean
     public DefaultClassMapper classMapper() {
         DefaultClassMapper classMapper = new DefaultClassMapper();
+        classMapper.setTrustedPackages("dev.lest.user.entity.*");
         Map<String, Class<?>> idClassMapping = new HashMap<>();
-        idClassMapping.put("createMailRequest", CreateMailRequest.class);
+        idClassMapping.put("UserEntity", UserEntity.class);
         classMapper.setIdClassMapping(idClassMapping);
         return classMapper;
     }
