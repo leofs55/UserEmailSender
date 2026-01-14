@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 import java.util.Objects;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("api/v1/mail/")
@@ -57,6 +58,18 @@ public class MailController {
         MailRespose response = mapper.mailEntityToMailRespose(service.find(entity));
         Map<String, Object> resultMap = Map.of(
                 "mail: ", response,
+                "result: ","The email was successfully found."
+        );
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(resultMap);
+    }
+
+    @GetMapping("find/by/user/{userId}")
+    public ResponseEntity<Map<String, Object>> findMailEndPoint(@PathVariable UUID userId) {
+
+        Map<String, Object> resultMap = Map.of(
+                "mail: ", service.findByUserId(userId),
                 "result: ","The email was successfully found."
         );
         return ResponseEntity

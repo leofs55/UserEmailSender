@@ -7,6 +7,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.UUID;
+
 @RequiredArgsConstructor
 @Service
 @Slf4j
@@ -15,7 +18,6 @@ public class MailService {
     private final MailRepository repository;
 
     public MailEntity create(MailEntity mail){
-        log.info(mail.toString());
         return repository.save(mail);
     }
 
@@ -30,5 +32,9 @@ public class MailService {
     public MailEntity delete(MailEntity mail){
         repository.delete(mail);
         return mail;
+    }
+
+    public List<MailEntity> findByUserId(UUID userId) {
+        return repository.findAllByUserId(userId);
     }
 }
