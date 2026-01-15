@@ -32,10 +32,7 @@ public class MailConsumer {
 
         service.create(MailEntity
                 .builder()
-                .emailFrom("suporte.lest@gmail.com")
-                .userId(user.userId())
                 .emailTo(user.email())
-                .sendDateEmail(LocalDateTime.now())
                 .emailSubject("")
                 .body(emailBody)
                 .emailStatus(MailStatus.SENT)

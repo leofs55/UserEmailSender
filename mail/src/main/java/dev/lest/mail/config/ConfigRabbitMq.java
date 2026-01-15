@@ -24,12 +24,6 @@ public class ConfigRabbitMq {
         return new Queue(queueName, true);
     }
 
-//    @Bean
-//    public JacksonJsonMessageConverter messageConverter() {
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        return new JacksonJsonMessageConverter(String.valueOf(objectMapper));
-//    }
-
     @Bean
     public MessageConverter messageConverter() {
         return new JacksonJsonMessageConverter();
