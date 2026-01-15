@@ -21,23 +21,32 @@ public class MailConsumer {
 
     @RabbitListener(queues = "mail-queue")
     public void listenMailStringQueue(@Payload UserEntity user) {
-        String emailBody =String.format(
-                "Olá, %s!\n\n" +
-                        "Obrigado por se cadastrar.\n" +
-                        "Confirmamos o registro do e-mail: %s\n\n" +
-                        "Acesse o link para confirmar: https://seusite.com/confirmar?email=%s\n\n" +
-                        "Atenciosamente,\nEquipe de Suporte",
-                user.name(), user.email(), user.email()
-        );
+        String emailBody = """
+        <div style="font-family: Arial, sans-serif; color: #333; max-width: 600px; margin: auto; border: 1px solid #ddd; padding: 20px; border-radius: 8px;">
+            <h2 style="color: #0056b3;">Bem-vindo(a), %s!</h2>
+            <p>Estamos muito felizes em ter você conosco.</p>
+            <p>Seu cadastro foi realizado com sucesso utilizando o e-mail: <strong>%s</strong>.</p>
+            <p>Para ativar sua conta e começar a usar nossos serviços, clique no botão abaixo:</p>
+            
+            <div style="text-align: center; margin: 30px 0;">
+                <a href="https://seusite.com/confirmar?email=%s" 
+                   style="background-color: #28a745; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold;">
+                   Confirmar Cadastro
+                </a>
+            </div>
+            
+            <p style="font-size: 12px; color: #777;">Se você não realizou este cadastro, por favor ignore este e-mail.</p>
+            <hr style="border: 0; border-top: 1px solid #eee;">
+            <p style="font-size: 12px; text-align: center;">&copy; 2024 Sua Empresa</p>
+        </div>
+    """.formatted(user.name(), user.email(), user.email());
 
-        service.create(MailEntity
-                .builder()
-                .emailTo(user.email())
-                .emailSubject("")
+        service.sendMail(MailEntity.builder()
+                .userId(user.userId())
+                .emailFrom(user.email())
+                .emailSubject("Email de confirmação de criação de usuário!")
                 .body(emailBody)
-                .emailStatus(MailStatus.SENT)
-                .build()
-        );
+                .build());
     }
 
 

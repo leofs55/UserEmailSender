@@ -48,7 +48,3 @@ spring:
 
 server:
   port: ${SERVER_PORT}
-
-mail:
-  from:
-    name: ${NAME}

@@ -22,7 +22,7 @@ import java.util.UUID;
 public class MailService {
 
     @Value("${EMAIL_FROM}")
-    private final String emailFrom;
+    private String emailFrom;
 
     private final MailRepository repository;
     private final JavaMailSender mailSender;
@@ -62,7 +62,6 @@ public class MailService {
             mailSender.send(message);
             mailEntity.setStatusEmail(MailStatus.SENT);
             mailEntity.setSendDateEmail(LocalDateTime.now());
-
         } catch (Exception e) {
             mailEntity.setStatusEmail(MailStatus.SENT);
             System.out.println("Erro ao enviar email de: "+mailEntity.getUserId());
